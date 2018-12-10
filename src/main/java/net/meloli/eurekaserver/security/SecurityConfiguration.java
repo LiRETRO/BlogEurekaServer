@@ -3,6 +3,7 @@ package net.meloli.eurekaserver.security;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -18,6 +19,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     /**
      * 添加SpringSecurity默认帐号密码
+     * 密码需要经过编码
      * @param auth
      * @throws Exception
      */
@@ -28,5 +30,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .withUser(username)
             .password(new BCryptPasswordEncoder().encode(password))
             .roles("ADMIN");
+    }
+
+    /**
+     * 一定要关闭csrf防护，否则无法注册
+     * @param http
+     * @throws Exception
+     */
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().disable();
     }
 }

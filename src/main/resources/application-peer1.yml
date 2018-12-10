@@ -1,0 +1,21 @@
+spring:
+  profiles: peer1
+  application:
+    name: EurekaPeer1
+server:
+  port: 10238
+
+eureka:
+  instance:
+    hostname: backup1
+    instance-id: ${spring.application.name}:${server.port}
+    prefer-ip-address: true
+    appname: EurekaPeer1
+  client:
+    # Enabled Register Self To Server
+    register-with-eureka: true
+    # Enabled Fetch Server
+    fetch-registry: true
+    # Set Default Address
+    service-url:
+      defaultZone: http://blogmanager:123456@master:10237/eureka/,http://blogmanager:123456@backup2:10239/eureka/

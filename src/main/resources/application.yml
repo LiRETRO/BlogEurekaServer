@@ -1,0 +1,14 @@
+server:
+  port: 10237
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    # Disabled Register Self To Server
+    register-with-eureka: false
+    # Disabled Fetch Server
+    fetch-registry: false
+    # Set Default Address
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/

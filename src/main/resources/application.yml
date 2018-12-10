@@ -1,3 +1,7 @@
+net:
+  meloli:
+    username: "blogmanager"
+    password: "123456"
 server:
   port: 10237
 
@@ -11,4 +15,4 @@ eureka:
     fetch-registry: false
     # Set Default Address
     serviceUrl:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      defaultZone: http://blogmanager:123456@${eureka.instance.hostname}:${server.port}/eureka/

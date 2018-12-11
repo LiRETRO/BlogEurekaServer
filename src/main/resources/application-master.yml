@@ -9,7 +9,7 @@ eureka:
   instance:
     hostname: master
     instance-id: ${spring.application.name}:${server.port}
-    prefer-ip-address: true
+    prefer-ip-address: false
     appname: EurekaMaster
   client:
     # Enabled Register Self To Server
@@ -18,12 +18,12 @@ eureka:
     fetch-registry: true
     # Set Default Address
     serviceUrl:
-#      defaultZone: http://blogmanager:123456@backup1:10238/eureka/,http://blogmanager:123456@backup2:10239/eureka/
-      defaultZone: http://blogmanager:123456@${eureka.instance.hostname}:${server.port}/eureka/
+      defaultZone: http://blogmanager:123456@backup1:10238/eureka/,http://blogmanager:123456@backup2:10239/eureka/
+#      defaultZone: http://blogmanager:123456@${eureka.instance.hostname}:${server.port}/eureka/
   server:
     eviction-interval-timer-in-ms: 4000
-    enable-self-preservation: false
-    renewal-percent-threshold: 0.9
+    renewal-percent-threshold: 0.49
+    enable-self-preservation: true
 
 # 暴露监控端点
 management:

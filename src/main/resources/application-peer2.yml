@@ -9,7 +9,7 @@ eureka:
   instance:
     hostname: backup2
     instance-id: ${spring.application.name}:${server.port}
-    prefer-ip-address: true
+    prefer-ip-address: false
     appname: EurekaPeer2
   client:
     # Enabled Register Self To Server
@@ -19,3 +19,7 @@ eureka:
     # Set Default Address
     service-url:
       defaultZone: http://blogmanager:123456@master:10237/eureka/,http://blogmanager:123456@backup1:10238/eureka/
+  server:
+    eviction-interval-timer-in-ms: 4000
+    enable-self-preservation: true
+    renewal-percent-threshold: 0.49

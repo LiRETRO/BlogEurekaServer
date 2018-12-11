@@ -34,11 +34,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     /**
      * 一定要关闭csrf防护，否则无法注册
+     * 并且打开Http Authorize
      * @param http
      * @throws Exception
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
+        http.authorizeRequests().anyRequest().authenticated().and().httpBasic();
     }
 }

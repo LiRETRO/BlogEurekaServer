@@ -25,9 +25,3 @@ eureka:
     renewal-percent-threshold: 0.49
     enable-self-preservation: true
 
-# 暴露监控端点
-management:
-  endpoints:
-    web:
-      exposure:
-        include: '*'
